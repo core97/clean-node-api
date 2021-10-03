@@ -6,8 +6,8 @@
   "scripts": {
     "lint": "eslint . --ext .ts",
     "lint:fix": "npm run lint -- --fix",
-    "test": "jest --passWithNoTests",
-    "test:related": "npm run test -- --bail --findRelatedTests"
+    "test": "jest --passWithNoTests --watch",
+    "test:related": "jest --bail --findRelatedTests --passWithNoTests"
   },
   "keywords": [],
   "author": "",
