@@ -1,4 +1,4 @@
-import { Collection, MongoClient, Filter, Document } from 'mongodb'
+import { Collection, MongoClient } from 'mongodb'
 
 export const MongoHelper = {
   client: null as unknown as MongoClient,
@@ -15,12 +15,12 @@ export const MongoHelper = {
     return this.client.db().collection(name)
   },
 
-  async findOne<T> (
-    collection: Collection<Document>,
-    filter: Filter<Document>
-  ) {
-    return collection.findOne(filter) as unknown as
-      | (Omit<T, 'id'> & { _id: string })
-      | undefined
+  map<T = any> (collection: any): T {
+    const { _id, ...collectionWithoutId } = collection
+
+    return {
+      ...collectionWithoutId,
+      id: _id
+    }
   }
 }
