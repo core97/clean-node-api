@@ -7,8 +7,6 @@ export default (app: Express): void => {
 
   fg.sync('**/src/main/routes/**routes.ts').map(async file => {
     const route = (await import(`../../../${file}`)).default
-    console.log('--- route ---')
-    console.log(route)
     route(router)
   })
 }
